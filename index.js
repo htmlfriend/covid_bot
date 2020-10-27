@@ -5,6 +5,7 @@ const messageResponce = require('./messages/message');
 const { BOT_TOKEN, URL } = process.env;
 const PORT = process.env.PORT || 5000;
 const bot = new Telegraf(BOT_TOKEN);
+console.log('process', process.env.NODE_ENV);
 
 // start, help
 bot.start((ctx) =>
@@ -34,16 +35,23 @@ bot.hears(/.*/, async (ctx) => {
   // console.log(data.response[0]);
   // return ctx.reply(`You said ${ctx.message.text}`);
 });
+
+bot.command('env', (ctx) => {
+  ctx.reply(`ENV is ${process.env.NODE_ENV}`);
+});
 // launch
 // need webhook
 
-bot.telegram.setWebhook(`${URL}/bot${BOT_TOKEN}`);
-bot.startWebhook(`/bot${BOT_TOKEN}`, null, PORT);
-console.log('start a bot');
-// bot
-//   .launch()
-//   .then((res) => {
-//     const date = new Date();
-//     console.log(` Bot launched at ${date}`);
-//   })
-//   .catch((err) => console.log(err));
+if (process.env.NODE_ENV == 'production') {
+  bot.telegram.setWebhook(`${URL}/bot${BOT_TOKEN}`);
+  bot.startWebhook(`/bot${BOT_TOKEN}`, null, PORT);
+  console.log('start a bot');
+} else {
+  bot
+    .launch()
+    .then((res) => {
+      const date = new Date();
+      console.log(` Bot launched at ${date}`);
+    })
+    .catch((err) => console.log(err));
+}
