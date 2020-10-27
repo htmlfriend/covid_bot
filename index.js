@@ -5,7 +5,6 @@ const messageResponce = require('./messages/message');
 const { BOT_TOKEN, URL } = process.env;
 const PORT = process.env.PORT || 5000;
 const bot = new Telegraf(BOT_TOKEN);
-console.log('process', process.env.NODE_ENV);
 
 // start, help
 bot.start((ctx) =>
