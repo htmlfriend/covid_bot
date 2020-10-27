@@ -2,8 +2,8 @@ require('dotenv').config();
 const Telegraf = require('telegraf');
 const covidService = require('./services/covid');
 const messageResponce = require('./messages/message');
-const BOT_TOKEN = process.env.BOT_TOKEN;
-
+const { BOT_TOKEN, URL } = process.env;
+const PORT = process.env.PORT || 5000;
 const bot = new Telegraf(BOT_TOKEN);
 
 // start, help
@@ -35,10 +35,14 @@ bot.hears(/.*/, async (ctx) => {
   // return ctx.reply(`You said ${ctx.message.text}`);
 });
 // launch
-bot
-  .launch()
-  .then((res) => {
-    const date = new Date();
-    console.log(` Bot launched at ${date}`);
-  })
-  .catch((err) => console.log(err));
+// need webhook
+
+bot.telegram.setWebhook(`${URL}/bot${BOT_TOKEN}`);
+bot.startWebhook(`/bot${BOT_TOKEN}`, null, PORT);
+// bot
+//   .launch()
+//   .then((res) => {
+//     const date = new Date();
+//     console.log(` Bot launched at ${date}`);
+//   })
+//   .catch((err) => console.log(err));
