@@ -1,0 +1,26 @@
+{
+  "name": "telegbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apixu": "github:apixu/apixu-nodejs",
+    "axios": "^0.19.2",
+    "country-emoji": "^1.5.4",
+    "currency-codes": "^2.1.0",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4",
+    "telegraf": "^3.38.0",
+    "telegraf-session-local": "^2.0.0"
+  },
+  "engines": {
+    "node": "14.x"
+  }
+}
