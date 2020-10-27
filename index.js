@@ -20,6 +20,10 @@ bot.help((ctx) => {
 	Russia,
 	China`);
 });
+// watch env
+bot.command('env', (ctx) => {
+  ctx.reply(`ENV is ${process.env.NODE_ENV}`);
+});
 // handlers
 
 bot.hears(/.*/, async (ctx) => {
@@ -35,9 +39,6 @@ bot.hears(/.*/, async (ctx) => {
   // return ctx.reply(`You said ${ctx.message.text}`);
 });
 
-bot.command('env', (ctx) => {
-  ctx.reply(`ENV is ${process.env.NODE_ENV}`);
-});
 // launch
 // need webhook
 
@@ -54,3 +55,6 @@ if (process.env.NODE_ENV === 'production') {
     })
     .catch((err) => console.log(err));
 }
+// for heroku services
+//heroku ps:scale web=0
+//heroku ps:scale web=1
