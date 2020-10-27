@@ -39,6 +39,7 @@ bot.hears(/.*/, async (ctx) => {
 
 bot.telegram.setWebhook(`${URL}/bot${BOT_TOKEN}`);
 bot.startWebhook(`/bot${BOT_TOKEN}`, null, PORT);
+console.log('start a bot');
 // bot
 //   .launch()
 //   .then((res) => {
