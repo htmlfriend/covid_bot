@@ -24,6 +24,10 @@ bot.help((ctx) => {
 bot.command('env', (ctx) => {
   ctx.reply(`ENV is ${process.env.NODE_ENV}`);
 });
+
+bot.command('test', (ctx) => {
+  ctx.reply('test was successful');
+});
 // handlers
 
 bot.hears(/.*/, async (ctx) => {
